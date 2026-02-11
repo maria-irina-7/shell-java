@@ -15,25 +15,24 @@ public class Main {
                 arguments = line[1];
             }
 
+
             switch (command) {
-                case "exit" -> exit();
-                case "echo" -> echo(arguments);
-                default -> notFound(command);
+                case "exit" -> {
+                    Command c = new Exit();
+                    c.execute(line);
+                }
+                case "echo" -> {
+                    Command c = new Echo();
+                    c.execute(line);
+                }
+                case "type" -> {
+                    Command c = new Type();
+                    c.execute(line);
+                }
+                default -> {
+                    System.out.println(input + ": command not found");
+                }
             }
         }
-
     }
-
-    private static void exit() {
-        System.exit(0);
-    }
-
-    private static void echo(String text) {
-        System.out.println(text);
-    }
-
-    private static void notFound(String input) {
-        System.out.println(input + ": command not found");
-    }
-
 }
