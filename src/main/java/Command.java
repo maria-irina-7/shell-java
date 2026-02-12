@@ -26,8 +26,10 @@ class Type implements Command {
         String name = args[1];
         if (Commands.isValidCommand(name)) {
             System.out.println(name + " is a shell builtin");
+        } else if (Commands.getOutsideCommand(name) != null) {
+            System.out.println(name + " is " + Commands.getOutsideCommand(name));
         } else {
-            System.out.println(name + " not found");
+            System.out.println(name + ": not found");
         }
     }
 }

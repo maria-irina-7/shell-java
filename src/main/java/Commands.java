@@ -1,4 +1,5 @@
-import java.util.HashMap;
+import java.io.File;
+import java.io.FilenameFilter;
 import java.util.Map;
 
 public class Commands {
@@ -10,6 +11,19 @@ public class Commands {
 
     public static boolean isValidCommand(String name){
         return commands.containsKey(name);
+    }
+
+    public static String getOutsideCommand(String name) {
+        String allOutsideCommands = System.getenv("PATH");
+        String[] pathCommands = allOutsideCommands.split(":");
+
+        for(int i = 0; i < pathCommands.length; i++) {
+            File file = new File(pathCommands[i], name);
+            if(file.exists() && file.canExecute()) {
+                return file.getAbsolutePath();
+            }
+        }
+        return null;
     }
 
     public static Command get(String name) {
