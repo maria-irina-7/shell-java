@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import Commands.Executable;
-import Commands.Commands;
+import Commands.InternalCommands;
+import Commands.Utils;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -12,10 +13,10 @@ public class Main {
             String[] line = input.split(" ", 2);
             String command = line[0];
 
-            Executable cmd = Commands.get(command);
-            if(cmd != null && Commands.isValidCommand(command)){
+            Executable cmd = InternalCommands.get(command);
+            if(cmd != null && InternalCommands.isValidCommand(command)){
                 cmd.execute(line);
-            } else if (Commands.getOutsideCommand(command) != null) {
+            } else if (Utils.getExternalCommand(command) != null) {
                 Process process = Runtime.getRuntime().exec(input.split(" "));
                 process.getInputStream().transferTo(System.out);
             } else {

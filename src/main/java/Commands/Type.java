@@ -8,10 +8,10 @@ public class Type implements Executable {
         }
 
         String name = args[1];
-        if (Commands.isValidCommand(name)) {
+        if (InternalCommands.isValidCommand(name)) {
             System.out.println(name + " is a shell builtin");
-        } else if (Commands.getOutsideCommand(name) != null) {
-            System.out.println(name + " is " + Commands.getOutsideCommand(name));
+        } else if (Utils.getExternalCommand(name) != null) {
+            System.out.println(name + " is " + Utils.getExternalCommand(name));
         } else {
             System.out.println(name + ": not found");
         }
