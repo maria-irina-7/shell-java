@@ -1,6 +1,7 @@
 package Shell;
 
 import java.io.File;
+import java.nio.file.Path;
 
 public class ChangeDirectory extends WorkingDirectory implements Executable{
     WorkingDirectory dir;
@@ -15,11 +16,24 @@ public class ChangeDirectory extends WorkingDirectory implements Executable{
             return;
         }
 
-        File directory = new File(args[1]);
-        if(directory.isDirectory()) {
-            dir.setCurrentDirectory(args[1]);
+        if (args[1].startsWith("/")) {
+            absolutePath(args[1]);
         } else {
-            System.out.println("cd: " + args[1] + ": No such file or directory");
+            relativePath(args[1]);
         }
+    }
+
+    private void absolutePath(String path) {
+        File directory = new File(path);
+        if(directory.isDirectory()) {
+            dir.setCurrentDirectory(path);
+        } else {
+            System.out.println("cd: " + path + ": No such file or directory");
+        }
+    }
+
+    private void relativePath(String path) {
+        Path normalize = Path.of(dir.getCurrentDirectory()).resolve(path).normalize();
+        setCurrentDirectory(normalize.toString());
     }
 }
