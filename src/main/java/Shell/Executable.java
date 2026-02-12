@@ -1,4 +1,4 @@
-package Commands;
+package Shell;
 
 public interface Executable {
     void execute(String[] args);

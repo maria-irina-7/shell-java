@@ -1,4 +1,4 @@
-package Commands;
+package Shell;
 
 public class Type implements Executable {
     public void execute(String[] args) {

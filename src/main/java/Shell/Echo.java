@@ -1,4 +1,4 @@
-package Commands;
+package Shell;
 
 public class Echo implements Executable {
     public void execute(String[] args) {
