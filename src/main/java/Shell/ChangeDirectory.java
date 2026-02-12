@@ -18,6 +18,8 @@ public class ChangeDirectory extends WorkingDirectory implements Executable{
 
         if (args[1].startsWith("/")) {
             absolutePath(args[1]);
+        } else if (args[1].startsWith("~")) {
+            dir.setCurrentDirectory(System.getenv("HOME"));
         } else {
             relativePath(args[1]);
         }
