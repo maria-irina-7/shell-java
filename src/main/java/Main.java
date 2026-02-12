@@ -13,6 +13,9 @@ public class Main {
             Command cmd = Commands.get(command);
             if(cmd != null && Commands.isValidCommand(command)){
                 cmd.execute(line);
+            } else if (Commands.getOutsideCommand(command) != null) {
+                Process process = Runtime.getRuntime().exec(input.split(" "));
+                process.getInputStream().transferTo(System.out);
             } else {
                 System.out.println(input + ": command not found");
             }
