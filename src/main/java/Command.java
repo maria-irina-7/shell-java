@@ -34,3 +34,9 @@ class Type implements Command {
     }
 }
 
+class PrintWorkingDirectory implements Command {
+    public void execute(String[] args) {
+        System.out.println(System.getProperty("user.dir"));
+    }
+}
+

@@ -6,7 +6,8 @@ public class Commands {
     private static final Map<String, Command> commands = Map.of(
             "exit", new Exit(),
             "echo", new Echo(),
-            "type", new Type()
+            "type", new Type(),
+            "pwd", new PrintWorkingDirectory()
     );
 
     public static boolean isValidCommand(String name){
