@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import Commands.Executable;
+import Commands.Commands;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -10,7 +12,7 @@ public class Main {
             String[] line = input.split(" ", 2);
             String command = line[0];
 
-            Command cmd = Commands.get(command);
+            Executable cmd = Commands.get(command);
             if(cmd != null && Commands.isValidCommand(command)){
                 cmd.execute(line);
             } else if (Commands.getOutsideCommand(command) != null) {

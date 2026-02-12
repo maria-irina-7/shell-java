@@ -1,9 +1,10 @@
+package Commands;
+
 import java.io.File;
-import java.io.FilenameFilter;
 import java.util.Map;
 
 public class Commands {
-    private static final Map<String, Command> commands = Map.of(
+    private static final Map<String, Executable> commands = Map.of(
             "exit", new Exit(),
             "echo", new Echo(),
             "type", new Type(),
@@ -27,7 +28,7 @@ public class Commands {
         return null;
     }
 
-    public static Command get(String name) {
+    public static Executable get(String name) {
         return commands.get(name);
     }
 }
